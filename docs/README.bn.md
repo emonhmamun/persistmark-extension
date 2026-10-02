@@ -35,10 +35,10 @@
 
 ## 📥 ইনস্টল করার নিয়ম (Chrome / Edge / Brave)
 
-1. `text-highlighter-extension` ফোল্ডারটি (অথবা `persistmark-extension.zip` থেকে আনজিপ করা ফোল্ডার) আপনার কম্পিউটারে রাখুন।
+1. রিপোজিটরিটি ডাউনলোড করুন — **Code → Download ZIP** (অথবা `git clone https://github.com/your-username/persistmark-extension.git`)।
 2. ব্রাউজারে যান: **`chrome://extensions`** (Edge-এ `edge://extensions`, Brave-এ `brave://extensions`)
 3. ডান দিকে উপরে **Developer mode** চালু করুন।
-4. **Load unpacked** বাটনে ক্লিক করে `text-highlighter-extension` ফোল্ডারটি সিলেক্ট করুন।
+4. **Load unpacked** বাটনে ক্লিক করে `persistmark-extension` ফোল্ডারটি (যেখানে `manifest.json` আছে) সিলেক্ট করুন।
 5. ব্যাস! টুলবারে 🖍️ আইকনটি চলে আসবে। পিন করে রাখুন।
 
 > 💡 **লোকাল HTML ফাইল টেস্ট করতে চাইলে:** `chrome://extensions` → PersistMark → Details → **"Allow access to file URLs"** চালু করুন।
@@ -153,22 +153,20 @@ Firefox MV3-ও সাপোর্ট করে, শুধু ৩টি ছো�
 ## 📁 ফাইল স্ট্রাকচার
 
 ```
-text-highlighter-extension/
+persistmark-extension/
 ├── manifest.json               # MV3 manifest
-├── shared/
-│   └── common.js               # রঙের প্যালেট + ডিফল্ট সেটিংস
-├── background/
-│   └── service-worker.js       # কনটেক্সট মেনু, শর্টকাট, ব্যাজ
+├── shared/common.js            # রঙের প্যালেট + ডিফল্ট সেটিংস
+├── background/service-worker.js # কনটেক্সট মেনু, শর্টকাট, ব্যাজ
 ├── content/
 │   ├── content-script.js       # হাইলাইট ইঞ্জিন (অ্যাংকরিং, টুলবার, সেভ/রিস্টোর)
-│   └── styles.css              # হাইলাইট মার্কের স্টাইল (লাইট/ডার্ক)
-├── popup/
-│   ├── popup.html / .css / .js # হাইলাইট তালিকা, মোড টগল, রঙ
-├── options/
-│   ├── options.html / .css / .js # সেটিংস, সিঙ্ক, ব্লকলিস্ট, ব্যাকআপ
+│   └── styles.css              # হাইলাইট মার্কের স্টাইল
+├── popup/                      # হাইলাইট তালিকা, মোড টগল, রঙ, intensity
+├── options/                    # সেটিংস, সিঙ্ক, ব্লকলিস্ট, ব্যাকআপ
 ├── icons/                      # আইকন (16/32/48/128)
-└── test/
-    └── test-page.html          # লোকাল টেস্ট পেজ
+├── test/                       # টেস্ট পেজ + jsdom/Playwright টেস্ট সুইট
+├── docs/                       # আর্কিটেকচার, ইনস্টল গাইড, এই বাংলা ডকুমেন্ট
+├── scripts/                    # lint ও packaging স্ক্রিপ্ট
+└── .github/                    # CI workflow + issue/PR টেমপ্লেট
 ```
 
 ---

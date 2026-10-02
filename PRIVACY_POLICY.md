@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last updated: 2026-09-29**
+**Last updated: 2026-10-02**
 
 PersistMark ("the extension") is a browser extension that lets you highlight
 text on web pages and keeps those highlights on your device. This policy
