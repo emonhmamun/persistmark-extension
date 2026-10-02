@@ -14,7 +14,7 @@ will be exactly where you left them.
 [![CI](https://github.com/your-username/persistmark-extension/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/persistmark-extension/actions/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-[Installation](#-installation) · [Usage](#-usage) · [How it works](docs/architecture.md) · [Privacy](PRIVACY_POLICY.md) · [বাংলা ডকুমেন্টেশন](docs/README.bn.md)
+[Installation](#-installation) · [Usage](#-usage) · [How it works](docs/architecture.md) · [Privacy](PRIVACY_POLICY.md) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
