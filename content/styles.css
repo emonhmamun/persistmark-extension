@@ -1,9 +1,10 @@
-/* ==========================================================================
-   PersistMark – highlight mark styles
-   Injected through the manifest (content_scripts.css), which is NOT subject
-   to the page's CSP. !important guards against site stylesheets.
-   ========================================================================== */
-
+/*
+ * PersistMark — Permanent Text Highlighter
+ * Copyright (C) 2026  MD Mamun
+ *
+ * Licensed under the GNU General Public License v3.0 — see COPYING.txt
+ * or https://www.gnu.org/licenses/gpl-3.0
+ */
 div.pm-host {
   position: fixed !important;
   z-index: 2147483646 !important;

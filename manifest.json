@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "PersistMark — Permanent Text Highlighter",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Highlight any text on any website in 8 colors. Highlights persist across refresh, restart and revisits — 100% local & private.",
   "minimum_chrome_version": "100",
 

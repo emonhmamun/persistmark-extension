@@ -223,6 +223,32 @@ const pageKeyOf = (sd) => Object.keys(Object.fromEntries(sd)).find(k => k.starts
     return m && m.textContent === 'quick brown fox';
   })());
 
+  console.log('— Session 7: import sanitizer (security) —');
+  const S = s1.w; // any window with common.js loaded
+  const san = (r) => S.hlSanitizeRecord(r);
+  const backup = (d) => S.hlSanitizeBackup(d);
+
+  const good = { id: 'pm_abc', text: 'hello world', prefix: 'ctx ', suffix: ' ctx', url: 'https://x.com/a', urlKey: 'https://x.com/a', title: 'T', frame: 'top', color: 'green', intensity: 0.4, note: 'n', occurrenceFull: 1, occurrenceText: 2, xpath: { start: '/html[1]/p[1]', startOffset: 2, end: '/html[1]/p[1]', endOffset: 7 }, createdAt: 123, updatedAt: 456 };
+  const g = san(good);
+  check('valid record passes with all fields', !!g && g.id === 'pm_abc' && g.color === 'green' && g.intensity === 0.4 && g.xpath.start === '/html[1]/p[1]', g);
+
+  check('non-string text rejected', san({ id: 'x', text: 123 }) === null);
+  check('missing id rejected', san({ text: 'hello' }) === null);
+  const huge = san({ id: 'x', text: 'a'.repeat(99999) });
+  check('oversized text rejected', huge === null);
+  const weird = san({ id: 'x', text: 'ok', color: 'javascript:alert(1)', intensity: 99, occurrenceText: -5, frame: 'evil', prefix: 42 });
+  check('bad color -> default, intensity clamped, occurrence >= 0, frame normalized, non-string prefix dropped', weird && weird.color === 'yellow' && weird.intensity === 0.85 && weird.occurrenceText === 0 && weird.frame === 'top' && weird.prefix === '', weird);
+  const badXpath = san({ id: 'x', text: 'ok', xpath: { start: 123, end: '/html' } });
+  check('malformed xpath dropped entirely', badXpath && badXpath.xpath === null, badXpath);
+  const longXpath = san({ id: 'x', text: 'ok', xpath: { start: '/'.repeat(5000), end: '/html' } });
+  check('oversized xpath truncated to 2000', longXpath && longXpath.xpath.start.length === 2000, longXpath && longXpath.xpath.start.length);
+  check('record object rebuilt fresh (no extra props)', (() => { const r = san(Object.assign({}, good, { evil: 'x' })); return r && !('evil' in r); })());
+
+  check('backup: wrong app marker rejected', backup({ app: 'other', pages: {} }) === null);
+  check('backup: pages must be object', backup({ app: 'persistmark', pages: [1, 2] }) === null);
+  check('backup: evil keys filtered', (() => { const r = backup({ app: 'persistmark', pages: { 'pm:evil': [good], 'pm:page:https://ok.com/': [good] } }); return r && r.records === 1 && !('pm:evil' in r.pages); })());
+  check('backup: per-page record cap enforced', (() => { const arr = []; for (let i = 0; i < 2500; i++) arr.push(Object.assign({}, good, { id: 'id' + i })); const r = backup({ app: 'persistmark', pages: { 'pm:page:https://ok.com/': arr } }); return r && r.pages['pm:page:https://ok.com/'].length === 2000; })());
+
   console.log('');
   console.log('RESULT:', pass, 'passed,', fail, 'failed');
   process.exit(fail ? 1 : 0);

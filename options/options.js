@@ -1,5 +1,20 @@
-/* PersistMark – options page logic */
-
+/*
+ * PersistMark — Permanent Text Highlighter
+ * Copyright (C) 2026  MD Mamun
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 (() => {
   'use strict';
 
@@ -259,12 +274,25 @@
 
   async function importFile(file, mode) {
     const statusEl = '#importStatus';
+
+    if (file.size > HL_IMPORT_LIMITS.maxFileBytes) {
+      showStatus(statusEl, 'That file is too large (limit: 25 MB).', 'err');
+      return;
+    }
+
     let data;
     try { data = JSON.parse(await file.text()); }
     catch (e) { showStatus(statusEl, 'That file is not valid JSON.', 'err'); return; }
 
-    if (!data || data.app !== 'persistmark' || !data.pages || typeof data.pages !== 'object') {
+    /* Every record is rebuilt through the shared sanitizer — never trust
+       backup files, even well-formed ones. */
+    const clean = hlSanitizeBackup(data);
+    if (!clean) {
       showStatus(statusEl, 'That file is not a PersistMark backup.', 'err');
+      return;
+    }
+    if (!clean.records) {
+      showStatus(statusEl, 'The backup contains no valid highlights.', 'warn');
       return;
     }
 
@@ -284,10 +312,8 @@
     let imported = 0, skipped = 0;
     const newPagesIndex = {};
 
-    for (const key of Object.keys(data.pages)) {
-      if (key.indexOf('pm:page:') !== 0) continue;
-      const incoming = Array.isArray(data.pages[key]) ? data.pages[key] : [];
-      let final = incoming.filter((r) => r && r.id && typeof r.text === 'string');
+    for (const key of Object.keys(clean.pages)) {
+      let final = clean.pages[key];
 
       if (mode === 'merge') {
         let existing = [];
@@ -302,8 +328,9 @@
         await dst.set({ [key]: final });
         imported += final.length;
         if (final.length) {
+          /* the storage key already contains the full URL (pm:page:https://…) */
           newPagesIndex[key] = {
-            url: final[0].url || ('https://' + key.slice(8)),
+            url: final[0].url || key.slice('pm:page:'.length),
             title: final[0].title || '',
             count: final.length,
             updatedAt: Date.now()

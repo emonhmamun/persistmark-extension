@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] — 2026-10-02
+
+### Security
+- Hardened the JSON backup import path — the only external input surface:
+  every record from a backup file is now rebuilt through a shared sanitizer
+  (`hlSanitizeRecord` / `hlSanitizeBackup`) that validates and bounds all
+  fields (id, text, context, note, url, color, intensity, occurrences,
+  xpath), rejects malformed records, and caps file size (25 MB), records
+  per page (2,000) and total records (50,000).
+- Added a length guard to XPath evaluation as defense in depth against
+  crafted expressions in imported backups.
+- Confirmed by audit: no `eval`/`new Function`, no dynamic `innerHTML`
+  (all user data rendered via `textContent`), and **zero network requests**
+  anywhere in the extension.
+
+### Fixed
+- Importing a backup whose records lacked a `url` field produced a
+  malformed `https://https://…` page-index entry — the storage key (which
+  already contains the full URL) is now used directly.
+
+### Added
+- Version badge in the popup footer (read from the manifest).
+- Download & install section in the README pointing at GitHub Releases.
+
+### Changed
+- License files reorganized for readability: `LICENSE` now carries a short,
+  human-readable summary, while the complete, legally binding GPL-3.0 text
+  ships in `COPYING.txt` (the arrangement recommended by the FSF).
+- Standard GPL-3.0 copyright headers added to all source files.
+
 ## [1.1.0] — 2026-09-29
 
 ### Fixed

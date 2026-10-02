@@ -49,7 +49,7 @@ npm install
 
    ```bash
    npm run lint          # JS syntax + manifest validation
-   npm run test:engine   # 30 anchoring-engine checks (jsdom)
+   npm run test:engine   # 42 anchoring-engine + security checks (jsdom)
    npm run test:e2e      # 39 UI checks in real Chromium (requires: npx playwright install chromium)
    ```
 

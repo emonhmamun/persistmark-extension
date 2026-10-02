@@ -68,15 +68,25 @@ return to that page — on any website where text can be selected.
   </tr>
 </table>
 
-## 📥 Installation
+## 📥 Download & Install
 
-### From source (Developer mode) — Chrome, Edge, Brave
+**Current version: v1.2.0**
 
-1. Download or clone this repository.
+> ### ⬇️ [Download the latest release (.zip)](https://github.com/emonhmamun/persistmark-extension/releases/latest/download/persistmark-extension.zip)
+> See all releases: [Releases page](https://github.com/emonhmamun/persistmark-extension/releases)
+
+### Chrome / Edge / Brave (1 minute)
+
+1. **Download** the zip above and **unzip** it.
 2. Open `chrome://extensions` (Edge: `edge://extensions`, Brave: `brave://extensions`).
 3. Enable **Developer mode** (top-right).
-4. Click **Load unpacked** and select the repository folder.
+4. Click **Load unpacked** and select the **unzipped folder**.
 5. Pin 🖍️ PersistMark to your toolbar. Done.
+
+### From source
+
+`git clone https://github.com/emonhmamun/persistmark-extension.git` and load the
+folder the same way — or run `npm run package` to build the zip yourself.
 
 > **Local files:** to highlight text on `file://` pages, enable
 > *Details → Allow access to file URLs* for PersistMark.
@@ -155,7 +165,7 @@ git clone https://github.com/emonhmamun/persistmark-extension.git
 cd persistmark-extension
 npm install          # installs jsdom (dev dependency)
 
-npm run test:engine  # 30 checks — anchoring engine (jsdom)
+npm run test:engine  # 42 checks — anchoring engine + import sanitizer (jsdom)
 npm run test:e2e     # 39 checks — full UI in real Chromium (Playwright)
 npm run lint         # syntax + manifest validation
 ```
@@ -204,7 +214,8 @@ Bug reports, feature ideas and pull requests are welcome! Please read
 ## 📄 License
 
 Copyright © 2026 **MD Mamun**. Released under the
-[GNU General Public License v3](LICENSE).
+[GNU General Public License v3](LICENSE) — full legal text in
+[COPYING.txt](COPYING.txt).
 
 ---
 
