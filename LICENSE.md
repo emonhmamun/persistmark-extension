@@ -7,7 +7,7 @@
   Licensed under the GNU General Public License, Version 3 (GPL-3.0)
 
   This is a human-friendly summary. The complete, legally binding
-  license text ships with this project in COPYING.txt and is also
+  license text ships with this project in COPYING and is also
   available at:  https://www.gnu.org/licenses/gpl-3.0
 
 ──────────────────────────────────────────────────────────────────────

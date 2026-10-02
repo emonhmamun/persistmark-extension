@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - License files reorganized for readability: `LICENSE` now carries a short,
   human-readable summary, while the complete, legally binding GPL-3.0 text
-  ships in `COPYING.txt` (the arrangement recommended by the FSF).
+  ships in `COPYING` (the arrangement recommended by the FSF).
 - Standard GPL-3.0 copyright headers added to all source files.
 
 ## [1.1.0] — 2026-09-29

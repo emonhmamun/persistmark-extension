@@ -214,8 +214,8 @@ Bug reports, feature ideas and pull requests are welcome! Please read
 ## 📄 License
 
 Copyright © 2026 **MD Mamun**. Released under the
-[GNU General Public License v3](LICENSE) — full legal text in
-[COPYING.txt](COPYING.txt).
+[GNU General Public License v3](LICENSE.md) — plain-English summary in
+[LICENSE.md](LICENSE.md), complete legal text in [COPYING](COPYING).
 
 ---
 
