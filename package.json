@@ -1,0 +1,21 @@
+{
+  "name": "persistmark-extension",
+  "version": "1.1.0",
+  "description": "PersistMark — Permanent Text Highlighter. Highlight any text on any website in any color; highlights survive refresh, restarts and revisits. 100% local & private.",
+  "private": true,
+  "license": "GPL-3.0",
+  "author": "MD Mamun",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/persistmark-extension.git"
+  },
+  "scripts": {
+    "test:engine": "node test/engine-test.js",
+    "test:e2e": "node test/e2e-test.js",
+    "lint": "node scripts/lint.js",
+    "package": "node scripts/package.js"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  }
+}

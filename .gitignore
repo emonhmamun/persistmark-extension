@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Packaging output
+dist/
+build/
+*.zip
+
+# Test artifacts
+test/coverage/
+test/profile/
+pm-profile*/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Source design file (large, not needed at runtime)
+icons/source.png

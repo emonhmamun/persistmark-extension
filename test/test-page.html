@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PersistMark টেস্ট পেজ</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans Bengali', -apple-system, 'Segoe UI', Roboto, sans-serif; background: #fafafa; color: #2d2d3a; line-height: 1.9; }
+  .container { max-width: 780px; margin: 0 auto; padding: 40px 20px 80px; }
+  .banner { background: linear-gradient(135deg, #6d5ae0, #8b5cf6); color: #fff; border-radius: 16px; padding: 26px 28px; margin-bottom: 34px; }
+  .banner h1 { font-size: 24px; margin-bottom: 8px; }
+  .banner p { opacity: .92; font-size: 14.5px; }
+  h2 { font-size: 19px; margin: 38px 0 12px; color: #4b3fa8; }
+  p.article { margin-bottom: 14px; font-size: 16px; }
+  .dark-box { background: #171a26; color: #d6d9e8; border-radius: 14px; padding: 24px 26px; margin: 20px 0; }
+  .dark-box h3 { color: #fff; margin-bottom: 10px; font-size: 16px; }
+  .dark-box p { font-size: 15px; }
+  .dynamic-area { border: 2px dashed #c9cdf0; border-radius: 14px; padding: 20px 24px; margin: 20px 0; }
+  button.demo { background: linear-gradient(135deg, #7c5cff, #5a8bff); color: #fff; border: 0; border-radius: 10px; padding: 10px 20px; font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 14px; }
+  button.demo:hover { filter: brightness(1.1); }
+  .editable-box { border: 1px solid #c9cdf0; border-radius: 12px; padding: 16px 18px; min-height: 60px; color: #444; }
+  .muted { color: #8b8fa3; font-size: 13px; }
+  ul { margin: 0 0 14px 22px; }
+  li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="banner">
+    <h1>🖍️ PersistMark টেস্ট পেজ</h1>
+    <p>এই পেজে এক্সটেনশনটি পরীক্ষা করুন। নিচের যেকোনো লেখা মাউস দিয়ে সিলেক্ট করুন — উপরে টুলবার আসবে, রঙ বেছে নিয়ে হাইলাইট করুন। তারপর পেজটি <strong>রিফ্রেশ</strong> করে দেখুন — হাইলাইটগুলো ঠিক জায়গায় ফিরে আসবে! 🎉</p>
+  </div>
+
+  <h2>📝 বাংলা লেখা (সাধারণ অনুচ্ছেদ)</h2>
+  <p class="article">বাংলাদেশ দক্ষিণ এশিয়ার একটি স্বাধীন রাষ্ট্র। এর রাজধানীর নাম ঢাকা। পদ্মা, মেঘনা ও যমুনা — এই তিন নদী বাংলাদেশের ভূগোলকে বিশেষ রূপ দিয়েছে। প্রতি বছর বর্ষাকালে নদীগুলো প্রাণ ফিরে পায়, আর সেই সঙ্গে জমে ওঠে নৌকা বাইচের উৎসব।</p>
+  <p class="article">কৃষি এই দেশের প্রাণ। ধান, পাট ও চা-এর মতো ফসল শুধু অর্থনীতিই ধরে রাখে না, সংস্কৃতিকেও সমৃদ্ধ করেছে। গ্রামবাংলার হাটবার, মেলা আর বাউল গান এই দেশের অনন্য ঐতিহ্য।</p>
+
+  <h2>🌐 English text (mixed content)</h2>
+  <p class="article">The quick brown fox jumps over the lazy dog. This classic pangram has been used to test typewriters and fonts since the late 19th century. Highlight any part of this sentence, refresh the page, and watch it reappear exactly where you left it.</p>
+  <p class="article">Persistent highlighting relies on text anchoring: instead of remembering pixel positions, the extension remembers the surrounding context of every highlight, so it can relocate the text even if the page layout shifts slightly.</p>
+
+  <h2>🌙 ডার্ক ব্যাকগ্রাউন্ড সেকশন</h2>
+  <div class="dark-box">
+    <h3>এই অংশের ব্যাকগ্রাউন্ড ডার্ক — হাইলাইট এখানেও স্পষ্ট দেখাবে</h3>
+    <p>ডার্ক মোডে হালকা রঙের হাইলাইট চোখে লাগে না, তাই এক্সটেনশনটি নিজেই বুঝে নেয় পেজের ব্যাকগ্রাউন্ড হালকা নাকি গাঢ় — এবং সেই অনুযায়ী রঙ বদলে নেয়। এই লেখাটুকু সিলেক্ট করে দেখুন।</p>
+    <p style="margin-top:10px;">Dark backgrounds automatically get adjusted, higher-contrast highlight colors. Try selecting this paragraph too.</p>
+  </div>
+
+  <h2>⚡ ডাইনামিক কনটেন্ট (Lazy loading টেস্ট)</h2>
+  <div class="dynamic-area">
+    <button class="demo" id="loadMore">আরও লেখা লোড করুন</button>
+    <div id="moreContent">
+      <p class="muted">নিচের বাটনে ক্লিক করলে ২ সেকেন্ড পর নতুন অনুচ্ছেদ যোগ হবে। আগে হাইলাইট করা থাকলে নতুন কনটেন্ট এলে এক্সটেনশন নিজেই সেগুলো খুঁজে সেভ করে রাখবে।</p>
+    </div>
+  </div>
+
+  <h2>✏️ Contenteditable (এডিটেবল এলাকা — ডিফল্টে বন্ধ)</h2>
+  <div class="editable-box" contenteditable="true">এই লেখাটি এডিট করা যায়। নিরাপত্তার জন্য ডিফল্টভাবে এখানে হাইলাইট করা যায় না। Settings → "Allow inside editable areas" চালু করলে এখানেও কাজ করবে।</div>
+
+  <h2>✅ পরীক্ষার চেকলিস্ট</h2>
+  <ul>
+    <li>যেকোনো লেখা <strong>সিলেক্ট করুন</strong> (ডাবল-ক্লিক, ড্র্যাগ বা কীবোর্ড) — সাথে সাথে উপরে ছোট টুলবার আসবে, <strong>বাটনে ক্লিক না করা পর্যন্ত হাইলাইট হবে না</strong></li>
+    <li><strong>Highlight বাটনে</strong> ক্লিক করুন — লাস্ট-ইউজড রঙে হাইলাইট হবে (বাটনের রঙই সেই রঙ)</li>
+    <li>কোনো <strong>রঙের ডটে</strong> ক্লিক করুন — সেই রঙে হাইলাইট + সেটাই নতুন ডিফল্ট</li>
+    <li>টুলবারের <strong>🎚️ (sliders) বাটনে</strong> ক্লিক করুন — <strong>কাস্টম কালার</strong> (যেকোনো রঙ বাছাই) + <strong>Intensity</strong> (কতটা গাঢ়/হালকা) সেট করে Apply দিন</li>
+    <li>হাইলাইট করা লেখায় <strong>ক্লিক</strong> করুন — রং বদল, <strong>Intensity স্লাইডার</strong>, নোট, কপি, ডিলিট</li>
+    <li>ডিলিট করলে নিচে <strong>Undo</strong> টোস্ট আসবে — ভুল হলে ৬ সেকেন্ডের মধ্যে ফিরিয়ে আনুন</li>
+    <li>পেজ <strong>রিফ্রেশ</strong> (F5) করুন — রঙ ও intensity সহ হাইলাইট ফিরে আসে কিনা দেখুন</li>
+    <li>ডার্ক ব্যাকগ্রাউন্ড সেকশনে হাইলাইট করে দেখুন — রঙ স্বয়ংক্রিয়ভাবে অ্যাডজাস্ট হয়</li>
+    <li>সিলেক্ট করে <kbd>Alt+Shift+D</kbd> চাপুন — সিলেকশনের ভেতরের হাইলাইট মুছে যাবে</li>
+    <li>এক্সটেনশন আইকনে ক্লিক করে হাইলাইটের তালিকা দেখুন — সার্চ, Intensity, ক্লিক করলে সেই হাইলাইটে যাবে</li>
+  </ul>
+
+  <p class="muted" style="margin-top:30px">💡 টিপস: লোকাল ফাইল (file://) হিসেবে খুললে chrome://extensions → PersistMark → "Allow access to file URLs" চালু করতে হবে।</p>
+
+</div>
+
+<script>
+  const texts = [
+    'প্রযুক্তির জগতে প্রতিদিন নতুন কিছু ঘটছে। আর্টিফিশিয়াল ইন্টেলিজেন্স এখন আমাদের দৈনন্দিন জীবনের অংশ হয়ে উঠছে।',
+    'Dhaka is one of the most densely populated cities in the world, yet it pulses with energy, color and incredible food.',
+    'নদীর পাড়ে বসে সূর্যাস্ত দেখা — বাংলার প্রকৃতির এক অনন্য উপহার। শীতের সকালের কুয়াশা ঢাকা শহরকে দেয় ভিন্ন এক রূপ।',
+    'Reading consistently, even a few pages a day, compounds into knowledge that lasts a lifetime.'
+  ];
+  let i = 0;
+  document.getElementById('loadMore').addEventListener('click', () => {
+    setTimeout(() => {
+      const p = document.createElement('p');
+      p.className = 'article';
+      p.textContent = texts[i % texts.length];
+      i++;
+      document.getElementById('moreContent').appendChild(p);
+    }, 2000);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "manifest_version": 3,
+  "name": "PersistMark — Permanent Text Highlighter",
+  "version": "1.1.0",
+  "description": "Highlight any text on any website in 8 colors. Highlights persist across refresh, restart and revisits — 100% local & private.",
+  "minimum_chrome_version": "100",
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "action": {
+    "default_title": "PersistMark — Permanent Text Highlighter",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+
+  "permissions": ["storage", "unlimitedStorage", "contextMenus"],
+  "host_permissions": ["<all_urls>"],
+
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["shared/common.js", "content/content-script.js"],
+      "css": ["content/styles.css"],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+
+  "commands": {
+    "toggle-highlighter-mode": {
+      "suggested_key": { "default": "Alt+Shift+H" },
+      "description": "Toggle highlighter mode (auto-highlight every selection)"
+    },
+    "highlight-selection": {
+      "suggested_key": { "default": "Alt+Shift+L" },
+      "description": "Highlight the current selection with the active color"
+    },
+    "remove-in-selection": {
+      "suggested_key": { "default": "Alt+Shift+D" },
+      "description": "Remove highlights inside the current selection"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Lint & engine tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dev dependencies
+        run: npm ci
+
+      - name: Lint (JS syntax + manifest validation)
+        run: npm run lint
+
+      - name: Engine tests (jsdom, 30 checks)
+        run: npm run test:engine
+
+  package:
+    name: Build store-ready zip
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Package extension
+        run: |
+          mkdir -p dist
+          zip -r dist/persistmark-extension.zip . \
+            -x "dist/*" ".git/*" ".github/*" "node_modules/*" \
+               "test/*" "docs/*" "assets/*" "screenshots/*" "scripts/*" \
+               "*.md" "package*.json" ".gitignore" "LICENSE"
+          unzip -l dist/persistmark-extension.zip | head -30
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: persistmark-extension
+          path: dist/persistmark-extension.zip
+          retention-days: 30

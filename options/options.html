@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PersistMark — Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="../icons/icon48.png" alt="">
+      <div>
+        <h1>PersistMark</h1>
+        <p>Permanent text highlighter — settings &amp; data</p>
+      </div>
+    </header>
+
+    <!-- ===================== General ===================== -->
+    <section class="card">
+      <h2>General</h2>
+
+      <div class="toggle-row">
+        <div>
+          <strong>Enable on websites</strong>
+          <span class="hint">Master switch for the whole extension.</span>
+        </div>
+        <label class="switch"><input type="checkbox" id="enabled"><span class="slider"></span></label>
+      </div>
+
+      <div class="toggle-row">
+        <div>
+          <strong>Show toolbar on selection</strong>
+          <span class="hint">Floating bar with colors appears whenever you select text.</span>
+        </div>
+        <label class="switch"><input type="checkbox" id="toolbarEnabled"><span class="slider"></span></label>
+      </div>
+
+      <div class="toggle-row">
+        <div>
+          <strong>Highlighter mode</strong>
+          <span class="hint">Instantly highlight every selection with the active color. (Alt+Shift+H)</span>
+        </div>
+        <label class="switch"><input type="checkbox" id="autoHighlight"><span class="slider"></span></label>
+      </div>
+
+      <div class="toggle-row">
+        <div>
+          <strong>Work inside iframes</strong>
+          <span class="hint">Highlight embedded documents and frames.</span>
+        </div>
+        <label class="switch"><input type="checkbox" id="iframeEnabled"><span class="slider"></span></label>
+      </div>
+
+      <div class="toggle-row">
+        <div>
+          <strong>Allow inside editable areas</strong>
+          <span class="hint">Highlight text in contenteditable editors. Off by default (safer).</span>
+        </div>
+        <label class="switch"><input type="checkbox" id="allowEditable"><span class="slider"></span></label>
+      </div>
+
+      <div class="toggle-row" style="cursor: default;">
+        <div>
+          <strong>Active color</strong>
+          <span class="hint">Used by Highlighter mode, the toolbar button and Alt+Shift+L.</span>
+        </div>
+        <div class="swatches" id="swatches"></div>
+      </div>
+
+      <div class="toggle-row" style="cursor: default;">
+        <div>
+          <strong>Default intensity</strong>
+          <span class="hint">How strong new highlights are (light \u2192 strong). Each highlight can also be tuned individually.</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span id="intensityVal" style="font-size:12px;color:#8d93ab;width:36px;text-align:right;">55%</span>
+          <input type="range" id="intensityRange" min="0.15" max="0.85" step="0.05" style="width:170px;accent-color:#7c5cff;">
+          <span id="intensityPreview" style="width:44px;height:22px;border-radius:6px;border:1px solid #dfe2ee;display:inline-block;"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Sync ===================== -->
+    <section class="card">
+      <h2>Sync across devices <span class="beta">opt-in</span></h2>
+      <div class="toggle-row">
+        <div>
+          <strong>Store highlights in Chrome Sync</strong>
+          <span class="hint">Uses your browser's own sync storage — highlights follow you to other computers signed into the same Chrome profile. Your data never touches any server of ours.</span>
+        </div>
+        <label class="switch"><input type="checkbox" id="syncEnabled"><span class="slider"></span></label>
+      </div>
+      <p id="syncStatus" class="status" hidden></p>
+    </section>
+
+    <!-- ===================== Site exceptions ===================== -->
+    <section class="card">
+      <h2>Site exceptions</h2>
+      <p class="hint" style="margin-bottom: 10px;">The extension stays completely inactive on these domains (e.g. <code>mail.google.com</code> or <code>facebook.com</code>).</p>
+      <div class="addrow">
+        <input type="text" id="blockInput" placeholder="example.com" spellcheck="false">
+        <button id="blockAdd" class="primary">Add</button>
+      </div>
+      <ul id="blockList" class="chip-list"></ul>
+    </section>
+
+    <!-- ===================== Data ===================== -->
+    <section class="card">
+      <h2>Your data</h2>
+      <p class="hint" id="dataStats">…</p>
+
+      <div class="btnrow">
+        <button id="btnExport" class="primary">Export backup (JSON)</button>
+
+        <label class="primary as-label" for="importFile">Import backup</label>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+        <select id="importMode">
+          <option value="merge">Merge with existing</option>
+          <option value="replace">Replace everything</option>
+        </select>
+
+        <button id="btnClearAll" class="danger">Delete ALL data</button>
+      </div>
+      <p id="importStatus" class="status" hidden></p>
+    </section>
+
+    <!-- ===================== Privacy ===================== -->
+    <section class="card about">
+      <h2>Privacy</h2>
+      <p>PersistMark stores everything <strong>locally in your browser</strong> (chrome.storage). It has <strong>no analytics, no tracking, no accounts and no network requests</strong> — the only outbound data is an optional Chrome Sync upload controlled by the toggle above. The <code>&lt;all_urls&gt;</code> permission is required only to inject the highlighter into the pages you visit.</p>
+      <p class="hint" style="margin-top:8px;">Shortcuts: <kbd>Alt+Shift+H</kbd> toggle highlighter mode · <kbd>Alt+Shift+L</kbd> highlight selection · <kbd>Alt+Shift+D</kbd> remove highlights in selection. (Change them at <code>chrome://extensions/shortcuts</code>)</p>
+    </section>
+  </div>
+
+  <script src="../shared/common.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

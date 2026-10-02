@@ -1,0 +1,72 @@
+/* ==========================================================================
+   PersistMark – highlight mark styles
+   Injected through the manifest (content_scripts.css), which is NOT subject
+   to the page's CSP. !important guards against site stylesheets.
+   ========================================================================== */
+
+div.pm-host {
+  position: fixed !important;
+  z-index: 2147483646 !important;
+}
+
+span.pm-hl[data-pm-id] {
+  background-color: rgba(255, 224, 102, 0.55) !important; /* default, overridden below */
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  font: inherit !important;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  text-decoration: inherit;
+  text-transform: inherit;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  cursor: inherit;
+  transition: background-color 0.15s ease;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ---- 8 colors x 2 detected page schemes (light page / dark page) --------- */
+
+span.pm-hl[data-pm-color="yellow"][data-pm-scheme="light"] { background-color: rgba(255, 224, 102, 0.55) !important; }
+span.pm-hl[data-pm-color="yellow"][data-pm-scheme="dark"]  { background-color: rgba(255, 213, 79, 0.30)  !important; }
+
+span.pm-hl[data-pm-color="green"][data-pm-scheme="light"] { background-color: rgba(140, 235, 150, 0.50) !important; }
+span.pm-hl[data-pm-color="green"][data-pm-scheme="dark"]  { background-color: rgba(105, 240, 175, 0.26) !important; }
+
+span.pm-hl[data-pm-color="blue"][data-pm-scheme="light"] { background-color: rgba(140, 200, 255, 0.50) !important; }
+span.pm-hl[data-pm-color="blue"][data-pm-scheme="dark"]  { background-color: rgba(120, 170, 255, 0.28) !important; }
+
+span.pm-hl[data-pm-color="pink"][data-pm-scheme="light"] { background-color: rgba(255, 170, 205, 0.50) !important; }
+span.pm-hl[data-pm-color="pink"][data-pm-scheme="dark"]  { background-color: rgba(255, 138, 190, 0.28) !important; }
+
+span.pm-hl[data-pm-color="orange"][data-pm-scheme="light"] { background-color: rgba(255, 190, 130, 0.50) !important; }
+span.pm-hl[data-pm-color="orange"][data-pm-scheme="dark"]  { background-color: rgba(255, 160, 105, 0.28) !important; }
+
+span.pm-hl[data-pm-color="purple"][data-pm-scheme="light"] { background-color: rgba(205, 170, 255, 0.50) !important; }
+span.pm-hl[data-pm-color="purple"][data-pm-scheme="dark"]  { background-color: rgba(197, 150, 255, 0.30) !important; }
+
+span.pm-hl[data-pm-color="red"][data-pm-scheme="light"] { background-color: rgba(255, 150, 150, 0.50) !important; }
+span.pm-hl[data-pm-color="red"][data-pm-scheme="dark"]  { background-color: rgba(255, 120, 120, 0.28) !important; }
+
+span.pm-hl[data-pm-color="teal"][data-pm-scheme="light"] { background-color: rgba(130, 230, 220, 0.50) !important; }
+span.pm-hl[data-pm-color="teal"][data-pm-scheme="dark"]  { background-color: rgba(90, 220, 205, 0.26)  !important; }
+
+/* ---- flash animation when jumping to a highlight from the popup ---------- */
+
+@keyframes pm-flash-kf {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 92, 255, 0); }
+  35%      { box-shadow: 0 0 0 5px rgba(124, 92, 255, 0.85); }
+}
+
+span.pm-hl.pm-flash {
+  animation: pm-flash-kf 1s ease 2;
+  border-radius: 3px;
+}

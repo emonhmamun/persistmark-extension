@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://github.com/your-username/persistmark-extension/tree/main/docs
+    about: Installation guide, architecture notes and more.
+  - name: 🔒 Security issues
+    url: https://github.com/your-username/persistmark-extension/security
+    about: Please do not report security vulnerabilities in public issues — use private vulnerability reporting.
