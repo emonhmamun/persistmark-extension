@@ -11,7 +11,7 @@ will be exactly where you left them.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![Chrome MV3](https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4?logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/develop/migrate)
-[![CI](https://github.com/your-username/persistmark-extension/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/persistmark-extension/actions/workflows/ci.yml)
+[![CI](https://github.com/emonhmamun/persistmark-extension/actions/workflows/ci.yml/badge.svg)](https://github.com/emonhmamun/persistmark-extension/actions/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 [Installation](#-installation) · [Usage](#-usage) · [How it works](docs/architecture.md) · [Privacy](PRIVACY_POLICY.md) · [Contributing](CONTRIBUTING.md)
@@ -151,7 +151,7 @@ feature only uses your browser's own Chrome Sync storage. Read the full
 ## 🧪 Development & testing
 
 ```bash
-git clone https://github.com/your-username/persistmark-extension.git
+git clone https://github.com/emonhmamun/persistmark-extension.git
 cd persistmark-extension
 npm install          # installs jsdom (dev dependency)
 

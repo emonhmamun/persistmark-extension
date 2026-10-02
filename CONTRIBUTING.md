@@ -4,8 +4,8 @@ Thanks for your interest in improving PersistMark! 🎉
 
 ## Ways to contribute
 
-- 🐛 [Report a bug](https://github.com/your-username/persistmark-extension/issues/new?template=bug_report.md)
-- 💡 [Suggest a feature](https://github.com/your-username/persistmark-extension/issues/new?template=feature_request.md)
+- 🐛 [Report a bug](https://github.com/emonhmamun/persistmark-extension/issues/new?template=bug_report.md)
+- 💡 [Suggest a feature](https://github.com/emonhmamun/persistmark-extension/issues/new?template=feature_request.md)
 - 🔧 Open a pull request
 - ⭐ Star the repository to help others find it
 - 🌍 Help translate the UI/documentation
@@ -13,7 +13,7 @@ Thanks for your interest in improving PersistMark! 🎉
 ## Development setup
 
 ```bash
-git clone https://github.com/your-username/persistmark-extension.git
+git clone https://github.com/emonhmamun/persistmark-extension.git
 cd persistmark-extension
 npm install
 ```

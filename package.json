@@ -7,7 +7,7 @@
   "author": "MD Mamun",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/persistmark-extension.git"
+    "url": "https://github.com/emonhmamun/persistmark-extension.git"
   },
   "scripts": {
     "test:engine": "node test/engine-test.js",

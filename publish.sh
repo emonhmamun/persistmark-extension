@@ -5,7 +5,7 @@
 # Usage:   ./publish.sh <your-github-username>
 #
 # What it does:
-#   1. Replaces the "your-username" placeholder in all files
+#   1. Replaces the "emonhmamun" placeholder in all files
 #   2. Sets the git author to the repository owner
 #   3. Links the remote repository
 #
@@ -17,8 +17,8 @@ USER="${1:?Usage: ./publish.sh <your-github-username>}"
 REPO="persistmark-extension"
 
 echo "==> Replacing placeholder username with: ${USER}"
-grep -rl 'your-username' --exclude-dir=.git . | while read -r f; do
-  sed -i "s/your-username/${USER}/g" "$f"
+grep -rl 'emonhmamun' --exclude-dir=.git . | while read -r f; do
+  sed -i "s/emonhmamun/${USER}/g" "$f"
   echo "    updated: ${f}"
 done
 

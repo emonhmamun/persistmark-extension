@@ -4,7 +4,7 @@
 
 1. **Download the code**
    - Click **Code → Download ZIP** on the repository page and unzip it, or
-   - `git clone https://github.com/your-username/persistmark-extension.git`
+   - `git clone https://github.com/emonhmamun/persistmark-extension.git`
 2. Open the extensions page:
    - Chrome: `chrome://extensions`
    - Edge: `edge://extensions`
@@ -73,4 +73,4 @@ in Firefox:
 4. Refresh the page (F5) — the highlight reappears. ✅
 
 If anything fails, see the [troubleshooting section in the README](../README.md#-faq)
-or [open an issue](https://github.com/your-username/persistmark-extension/issues).
+or [open an issue](https://github.com/emonhmamun/persistmark-extension/issues).

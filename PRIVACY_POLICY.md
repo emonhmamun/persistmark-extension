@@ -67,5 +67,5 @@ Material changes will be noted here with an updated date and a CHANGELOG entry.
 
 ## Contact
 
-Open a GitHub issue at the [repository](https://github.com/your-username/persistmark-extension/issues)
+Open a GitHub issue at the [repository](https://github.com/emonhmamun/persistmark-extension/issues)
 or use the Security tab for sensitive matters.
